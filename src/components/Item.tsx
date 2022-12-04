@@ -36,7 +36,7 @@ function Item({ productId, productName, imgUrl }: IProduct) {
   return (
     <Container>
       {imgUrl ? (
-        <img alt={`${productId}`} src={imgUrl}></img>
+        <img alt={`${productId}`} src={imgUrl} height="42px" width="42px"></img>
       ) : (
         <FontAwesomeIcon icon={faBoxesPacking} size="2x" />
       )}

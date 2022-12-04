@@ -1,11 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import styled from "styled-components";
+import { getOrder, IOrderList } from "../api";
 import LabelBar from "../components/LabelBar";
+import Loader from "../components/Loader";
+import OrderItem from "../components/OrderItem";
 
+// 주문 관리
 const Containter = styled.main`
   background-color: #f1f2f4;
   padding: 30px;
   flex-grow: 1;
+  min-height: 805px;
+  overflow-y: scroll;
 `;
 
 const Board = styled.article`
@@ -66,18 +73,37 @@ function Order() {
       width: "150px",
     },
   ];
+
+  const { isLoading, data: orderList } = useQuery<IOrderList>({
+    queryKey: ["orderList"],
+    queryFn: () => getOrder(),
+  });
+
   return (
-    <Containter>
-      <Section>
-        <Board>
-          <Title>주문 관리</Title>
-          <LabelBar labelArray={labelArray} />
-        </Board>
-        <Board>
-          <Title>주문 상세</Title>
-        </Board>
-      </Section>
-    </Containter>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Containter>
+          <Section>
+            <Board>
+              <Title>주문 관리</Title>
+              <LabelBar labelArray={labelArray} />
+              <Info>
+                {orderList?.data?.map((order) => (
+                  <li key={order.orderId}>
+                    <OrderItem labelArray={labelArray} {...order} />
+                  </li>
+                ))}
+              </Info>
+            </Board>
+            <Board>
+              <Title>주문 상세</Title>
+            </Board>
+          </Section>
+        </Containter>
+      )}
+    </>
   );
 }
 

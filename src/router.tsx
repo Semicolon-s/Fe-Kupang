@@ -5,6 +5,7 @@ import Management from "./screens/Management";
 import Order from "./screens/Order";
 import Register from "./screens/Register";
 import History from "./screens/History";
+import ItemInfo from "./components/ItemInfo";
 
 const router = createBrowserRouter([
   {
@@ -16,8 +17,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        // 상품 관리
         path: "register-goods",
         element: <Register />,
+        children: [{ path: "", element: <ItemInfo /> }],
       },
       {
         path: "product-order",

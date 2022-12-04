@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import Loader from "../components/Loader";
 
 const Containter = styled.main`
   background-color: #f1f2f4;
   padding: 30px;
   flex-grow: 1;
+  min-height: 805px;
+  overflow-y: scroll;
 `;
 
 const Board = styled.article`

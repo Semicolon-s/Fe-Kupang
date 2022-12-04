@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { getProductList, IProductList } from "../api";
 import Item from "../components/Item";
 import LabelBar from "../components/LabelBar";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../components/Loader";
+import { Link, Outlet } from "react-router-dom";
+
+// 상품 관리
 
 const Containter = styled.main`
   background-color: #f1f2f4;
   padding: 30px;
   flex-grow: 1;
+  min-height: 805px;
+  overflow-y: scroll;
 `;
 
 const Board = styled.article`
@@ -60,18 +68,38 @@ function Register() {
       width: "450px",
     },
   ];
+
+  const { isLoading, data: productList } = useQuery<IProductList>({
+    queryKey: ["productList"],
+    queryFn: () => getProductList(),
+  });
+
   return (
-    <Containter>
-      <Section>
-        <Board>
-          <Title>상품 관리</Title>
-          <LabelBar labelArray={labelArray} />
-        </Board>
-        <Board>
-          <Title>상품 정보</Title>
-        </Board>
-      </Section>
-    </Containter>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Containter>
+          <Section>
+            <Board>
+              <Title>상품 관리</Title>
+              <LabelBar labelArray={labelArray} />
+              <Info>
+                {productList?.data.map((product) => (
+                  <Link to={""} state={product} key={product.productId}>
+                    <Item {...product} />
+                  </Link>
+                ))}
+              </Info>
+            </Board>
+            <Board>
+              <Title>상품 정보</Title>
+              <Outlet />
+            </Board>
+          </Section>
+        </Containter>
+      )}
+    </>
   );
 }
 

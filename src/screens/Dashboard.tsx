@@ -9,6 +9,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from "../components/Loader";
 
+// 대시 보드
+
 interface IStateBoard {
   width?: string;
 }

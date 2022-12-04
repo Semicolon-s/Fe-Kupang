@@ -5,7 +5,7 @@ interface ILabel {
   width: string;
 }
 
-interface ILabelData {
+export interface ILabelData {
   labelName: string;
   width: string;
 }

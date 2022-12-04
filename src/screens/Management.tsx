@@ -1,15 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { createImportSpecifier } from "typescript";
-import { getProductList, IProductList } from "../api";
+import { getProductList, getStock, IProductList, IStockList } from "../api";
 import Item from "../components/Item";
 import LabelBar from "../components/LabelBar";
+import Loader from "../components/Loader";
+
+// 재고 관리
 
 const Containter = styled.main`
   background-color: #f1f2f4;
   padding: 30px;
   flex-grow: 1;
+  min-height: 805px;
+  overflow-y: scroll;
 `;
 
 const Board = styled.article`
@@ -63,31 +67,37 @@ function Management() {
     },
   ];
 
-  const { isLoading, data: productList } = useQuery<IProductList>({
-    queryKey: ["productList"],
-    queryFn: () => getProductList(),
+  const { isLoading, data: stockList } = useQuery<IStockList>({
+    queryKey: ["stockList"],
+    queryFn: () => getStock(),
   });
 
+  console.log(stockList);
+
   return (
-    <Containter>
-      <Section>
-        <Board>
-          <Title>상품 관리</Title>
-          <LabelBar labelArray={labelArray} />
-          <Info>
-            {productList?.data.map((product) => (
-              <li key={product.productId}>
-                <Item {...product} />
-              </li>
-            ))}
-          </Info>
-        </Board>
-        <Board>
-          <Title>상품 정보</Title>
-          <Info></Info>
-        </Board>
-      </Section>
-    </Containter>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Containter>
+          <Section>
+            <Board>
+              <Title>재고 관리</Title>
+              <LabelBar labelArray={labelArray} />
+              <Info>
+                {stockList?.data.map((stock) => (
+                  <li key={stock.stockId}>{/* <Item {...stock} /> */}</li>
+                ))}
+              </Info>
+            </Board>
+            <Board>
+              <Title>상품 정보</Title>
+              <Info></Info>
+            </Board>
+          </Section>
+        </Containter>
+      )}
+    </>
   );
 }
 

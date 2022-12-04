@@ -12,10 +12,51 @@ export interface IProductList {
   data: IProduct[];
 }
 
-// export const getProductList = async () => {
-//   const res = await fetch(`${BASE_URL}/product`);
-//   return res.json();
-// };
+export interface IOrderList {
+  statuscode: number;
+  message: string;
+  data?: IOrder[] | null;
+}
+export interface IOrder {
+  orderId: number;
+  productId: number;
+  productName: string;
+  orderNum: number;
+  buyer: string;
+  phonenumber: string;
+  address: string;
+  orderState: number;
+  orderDate: string;
+}
+
+export interface IStock {
+  stockId: number;
+  stockNum: number;
+}
+
+export interface IStockList {
+  statuscode: number;
+  message: "상품검색 성공";
+  data: IStock[];
+}
+
+//현재 등록되어 있는 상품의 목록 불러오기
+export const getProductList = async () => {
+  const res = await fetch(`${BASE_URL}/product`);
+  return res.json();
+};
+
+// 주문내역 불러오기
+export const getOrder = async () => {
+  const res = await fetch(`${BASE_URL}/order`);
+  return res.json();
+};
+
+//재고내역 불러오기
+export const getStock = async () => {
+  const res = await fetch(`${BASE_URL}/stock`);
+  return res.json();
+};
 
 // export const getCoinInfo = async (coinId: string) => {
 //   return (await fetch(`${BASE_URL}/coins/${coinId}`)).json();

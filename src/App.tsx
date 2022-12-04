@@ -41,7 +41,7 @@ function App() {
         <Outlet />
         <GlobalStyle />
       </Contianer>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }
