@@ -9,7 +9,7 @@ import ItemInfo from "./components/ItemInfo";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: `${process.env.PUBLIC_URL}/`,
     element: <App />,
     children: [
       {
