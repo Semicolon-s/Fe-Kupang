@@ -54,5 +54,6 @@
   "devDependencies": {
     "@tanstack/react-query-devtools": "^4.19.1",
     "@types/styled-components": "^5.1.26"
-  }
+  },
+  "homepage": "https://semicolon-s.github.io/Fe-Kupang"
 }
