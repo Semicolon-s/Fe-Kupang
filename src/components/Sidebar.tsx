@@ -57,31 +57,31 @@ function Sidebar() {
       <Nav>
         <ul>
           <Category current={pathname === "/"}>
-            <Link to={"/"}>
+            <Link to={`${process.env.PUBLIC_URL}/`}>
               <FontAwesomeIcon icon={faChartSimple} />
               대시보드
             </Link>
           </Category>
           <Category current={pathname === "/register-goods"}>
-            <Link to={"/register-goods"}>
+            <Link to={`${process.env.PUBLIC_URL}/register-goods`}>
               <FontAwesomeIcon icon={faBox} />
               상품관리
             </Link>
           </Category>
           <Category current={pathname === "/product-order"}>
-            <Link to={"/product-order"}>
+            <Link to={`${process.env.PUBLIC_URL}/product-order`}>
               <FontAwesomeIcon icon={faCartArrowDown} />
               주문관리
             </Link>
           </Category>
           <Category current={pathname === "/stock-management"}>
-            <Link to={"/stock-management"}>
+            <Link to={`${process.env.PUBLIC_URL}/stock-management`}>
               <FontAwesomeIcon icon={faBoxesStacked} />
               재고관리
             </Link>
           </Category>
           <Category current={pathname === "/warehouse-history"}>
-            <Link to={"/warehouse-history"}>
+            <Link to={`${process.env.PUBLIC_URL}/warehouse-history`}>
               <FontAwesomeIcon icon={faClipboardList} />
               입/출고내역
             </Link>
