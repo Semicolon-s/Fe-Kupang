@@ -9,7 +9,7 @@ import ItemInfo from "./components/ItemInfo";
 
 const router = createBrowserRouter([
   {
-    path: `${process.env.PUBLIC_URL}`,
+    path: `${process.env.PUBLIC_URL}/Fe-Kupang`,
     element: <App />,
     children: [
       {
