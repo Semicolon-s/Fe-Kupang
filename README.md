@@ -89,3 +89,8 @@ export const getStock = async () => {
 ## Backend DB 설계
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/68225058/214665139-2e490f3c-5b3f-4cd5-a738-dadf6b584f37.png">
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/68225058/214665196-1c1cb464-c34e-410b-8ca6-08fba096f995.png">
+
+## 🪄 결과
+github page로 배포되어 있으나, 백엔드 서버를 내린 상태입니다. <br>
+프론트엔드 부분만 일부 확인할 수 있습니다.
+
